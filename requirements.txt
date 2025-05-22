@@ -1,0 +1,22 @@
+# requirements.txt
+
+torch>=1.12.0
+torchvision>=0.13.0
+numpy>=1.19.0
+PyYAML>=5.4.1
+Pillow>=8.2.0
+networkx>=2.6.3
+osmnx>=1.1.2
+tqdm>=4.62.0
+matplotlib>=3.3.4
+
+# Testing
+pytest>=6.2.0
+pytest-cov>=2.12.0
+
+# ONNX support
+onnx>=1.10.0
+onnxruntime>=1.8.0
+
+# Real-time examples
+opencv-python>=4.5.3

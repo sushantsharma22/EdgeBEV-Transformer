@@ -1,0 +1,73 @@
+# BaseConfig
+seed: 42
+device: "cuda"
+num_workers: 4
+batch_size: 8
+output_dir: "./outputs"
+data_root: "./data"
+map_cache_dir: "./maps"
+debug: false
+
+# ModelConfig
+config_name: "model_config"
+temporal_stride: 1
+
+image_encoder:
+  camera_count: 6
+  temporal_window: 3
+  input_channels: 3
+  backbone: "resnet18"
+  pretrained: false
+  out_channels: 256
+  use_positional_encoding: true
+  pos_encoding_dim: 64
+
+spatial_transformer:
+  embed_dim: 256
+  num_heads: 8
+  num_layers: 4
+  ffn_dim: 512
+  dropout: 0.1
+  kernel_size: 3
+  stride: 1
+  padding: 1
+
+bev_former:
+  bev_height: 64
+  bev_width: 64
+  bev_embed_dim: 256
+  num_heads: 8
+  num_layers: 6
+  ffn_dim: 512
+  dropout: 0.1
+  attention_type: "cross"
+
+fusion_transformer:
+  modalities: ["vision","imu","speed","gnss","steering"]
+  embed_dim: 256
+  num_heads: 8
+  num_layers: 3
+  ffn_dim: 512
+  dropout: 0.1
+
+trajectory_planner:
+  horizon_steps: 30
+  step_dt: 0.1
+  embed_dim: 256
+  num_heads: 8
+  num_layers: 4
+  ffn_dim: 512
+  dropout: 0.1
+  loss_weights:
+    trajectory: 1.0
+    heading: 0.5
+    velocity: 0.5
+
+learning_rate: 1e-4
+weight_decay: 1e-5
+warmup_steps: 500
+total_steps: 100000
+lr_scheduler: "linear"
+scheduler_params:
+  step_size: 30000
+  gamma: 0.1

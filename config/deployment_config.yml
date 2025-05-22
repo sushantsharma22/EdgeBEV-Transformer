@@ -1,0 +1,31 @@
+seed: 42
+device: "cuda"
+num_workers: 1
+batch_size: 1
+output_dir: "./exported_models"
+data_root: "./data"
+map_cache_dir: "./maps"
+debug: false
+
+config_name: "deployment_config"
+target_device: "cuda"
+gpu_memory_fraction: 0.9
+
+optimize_for: "latency"
+memory_limit_mb: null
+
+use_fp16: false
+quantization: false
+quantization_mode: "dynamic"
+
+prune: false
+prune_ratio: 0.2
+
+compile_backend: "onnx"
+onnx_opset: 12
+tflite_optimizations: ["DEFAULT"]
+torchscript_jit: true
+
+export_dir: "./exported_models"
+num_inference_threads: 1
+additional_compile_args: {}
